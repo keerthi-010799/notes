@@ -1,0 +1,77 @@
+.listcontainer{
+    position: absolute;
+    width: 100%;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.firstnote{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 6px;
+}
+.noteitemtitle{
+    padding-top: 7px;
+    display: block;
+    outline: none;
+    border: none;
+}
+.noteiconimage{
+    visibility: hidden;
+    height:40px;
+    width: 40px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 6px;
+    padding-left: 10px;
+
+}
+.noteiconimage:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.otheritemms{
+    display:flex;
+    height:100px;
+    width: 200px;
+}
+.noteiconpinimage{
+    visibility: hidden;
+    margin-left: 50px;
+    height:40px;
+    width: 40px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 6px;
+    padding-left: 10px;
+
+}
+.noteiconpinimage:hover{
+    background-color: rgba(27, 50, 68, 0.08);
+    cursor: pointer;
+}
+.note:hover .noteiconimage{
+    visibility: visible;
+}
+.note:hover .noteiconpinimage{
+    visibility: visible;
+}
+.notetickicon{
+    visibility: hidden;
+    position:absolute;
+}
+.note:hover .notetickicon{
+        visibility: visible;
+}
+.checkcontainer{
+    position: relative;
+    margin-left: 6px;
+}
+.check{
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 5px;
+}
+.listtext{
+    list-style-type: none;
+}

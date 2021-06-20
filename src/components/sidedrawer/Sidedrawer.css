@@ -1,0 +1,81 @@
+.sideDrawer{
+    height: 700px;
+    width:50px;
+    font-family: 'Open Sans',sans-serif;
+    display: block;
+    height: 800px;
+    width: 200px;
+    padding-top: 5px;
+    margin-left: 10px;
+    width: 100px;
+    transition-property: width;
+    transition-duration: 0.5s;
+}
+.sideDrawerItem{
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    
+    padding-top: 10px;
+    padding-left: 13px;
+    border-radius: 50%;
+    margin-left: 7px;
+}
+.ssideDrawerr{
+    display: flex;
+}
+.sideDrawer:hover{
+    width: 200px;
+}
+.ssideDrawerr:hover{
+    background-color: rgba(60,64,67,0.08);
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    cursor: pointer;
+}
+.sideText{
+    display: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 12px;
+    padding-top: 12px;
+}
+.sideDrawer:hover .sideText{
+    display: flex;
+}
+.sideDrawerItem1{
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-left: 13px;
+    border-radius: 50%;
+    margin-left: 7px;
+}
+.sideDrawerItem1:hover{
+    background-color: #feefc3;
+}
+.ssideDrawerr1{
+    display: flex;
+    cursor: pointer;
+}
+.sideDrawer:hover{
+    width: 200px;
+    box-shadow: 2px 2px light;
+}
+.ssideDrawerr1:hover{
+    background-color: #feefc3;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.sideText1{
+    display: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 12px;
+    padding-top: 12px;
+}
+.sideDrawer:hover .sideText1{
+    display: flex;
+}

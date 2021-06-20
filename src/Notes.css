@@ -1,0 +1,343 @@
+.notecontainer{
+    width: 100%;
+    display:block;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-left: 100px;
+}
+.addnote{
+   width: 500px; 
+   padding-left: 10px;
+   padding-right: 8px;
+   margin-left: 20px;
+   margin-right: 50px;
+   border-radius: 8px;
+   box-shadow: 2px 2px 2px 2px lightgray;
+   border-left: 1px solid lightgray;
+   border-top: 1px solid lightgray;
+}
+.listingnotes{
+    position: relative;
+}
+.addingtext{
+    margin-top: 7px;
+    margin-left: 4px;
+    width: 100%;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    resize: none;
+}
+.addinglisttext{
+    margin-top: 7px;
+    margin-left: 4px;
+    width: 470px;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    resize: none;
+}
+.tickbox{
+    position: absolute;
+    margin-top: 10px;
+    height: 5px;
+    width: 5px;
+}
+.unorder{
+    margin: 0;
+    padding: 0;
+}
+.listcontainer{
+    width: 300px;
+    margin-top: 20px;
+}
+.overAllContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.noteicon{
+    height:35px;
+    width: 35px;
+    align-items: center;
+    visibility: hidden;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 8.5px;
+    transition: 0.4s;
+}
+.modalnoteicon{
+    height:35px;
+    width: 35px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 8.5px;
+}
+.modalnoteicon:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.noteicon:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.notebellicon{
+    visibility: hidden;
+    height:35px;
+    width: 35px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 5px;
+    transition: 0.4s;
+}
+.modalnotebellicon{
+    height:35px;
+    width: 35px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+.modalnotebellicon:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.notebellicon:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.noteiconimage{
+    height:40px;
+    width: 40px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+.noteiconimage:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.addingtext::placeholder{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 14px;    
+    color: #80868b;
+}
+.texticon{
+    position: absolute;
+    height: 43px;
+    width:  43px;
+    align-items: center;
+    border-radius: 50%;
+    padding-top: 8px;
+    padding-left: 11px;
+    margin-left: 3px;
+}
+.texticon:hover{
+    background-color: rgba(60,64,67,0.08);
+    cursor: pointer;
+}
+.notetitle{
+    display: none;
+    height: 45px;
+    padding-top: 10px;
+}
+.iconlist{
+    display: none;
+    height: 45px;
+    padding-top: 3px;
+}
+.noteinput{
+    border:none;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+.addnote:focus-within .notetitle{
+    display: flex;
+}
+.addnote:focus-within .iconlist{
+    display: flex;
+}
+.addnote:focus-within .addinglisttext{
+    border-top: 0.5px solid;
+    border-bottom: 0.5px solid;
+    border-left: none;
+    border-right: none;
+}
+.addnote:focus-within .texticon{
+    display:none;
+}
+.closing{
+    width:80px;
+    margin-left: 200px;
+    margin-top: 10px;
+    padding-left: 20px;
+    font-size: medium; 
+    font-family: 'Open Sans', sans-serif;
+}
+.closing:hover{
+    border-radius: 8px;
+    background-color: rgba(115, 169, 211, 0.08);
+    cursor: pointer;
+}
+.note{
+    width: 100%;
+    min-height: 125px;
+    height: fit-content;
+    border-radius: 8px;
+    border: 2px solid lightgray;
+    flex-grow: 0;
+    align-content: stretch;
+}
+.textnotes{
+    height:fit-content;
+    margin-top:  10px;
+    padding-left: 18px;
+    outline: none;
+    resize: none;
+    border: none;
+    overflow: hidden;
+}
+.note:hover .firstnote{
+    display: flex;
+}
+.firstnote{
+    display: none;
+    margin-top: 30px;
+    margin-left: 6px;
+}
+.noteitemtitle{
+    width: 90%;
+    margin-left: 7px;
+    padding-top: 7px;
+    display: block;
+    font-weight: bold;
+    text-indent: 10px;
+    outline: none;
+    border: none;
+}
+.modalinner{
+    background-color: whitesmoke;
+    width: 48%;
+    border-radius: 8px;
+    margin: 0;
+}
+.modaltext{
+    font-family: Roboto,RobotoDraft,Arial,sans-serif;
+    color: black;
+    font-size: 16px;
+    font-weight: 550;
+    margin-left: 5px;
+    height: fit-content;
+    overflow: hidden;
+    resize: none;
+    outline: none;
+    border: none;
+}
+.modalinnertitle{
+    margin-top: 12px;
+    margin-left:  5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #80868b;
+    resize: none;
+    outline: none;
+    border: none;
+}
+.noteiconinner{
+    display: flex;
+    padding-top: 5px;
+}
+
+.addnote:hover .noteicon{
+    visibility: visible;
+}
+.addnote:hover .notebellicon{
+    visibility: visible;
+}
+.note:hover .noteicon{
+    visibility: visible;
+}
+.note:hover .noteiconimage{
+    visibility: visible;
+}
+.note:hover .notebellicon{
+    visibility: visible;
+}
+
+.noteiconpinimage{
+    visibility:hidden;
+    height:25px;
+    width:25px;
+    align-items: center;
+    padding-left: 4px;
+    padding-top: 4px;
+    border-radius: 50%;
+    transition:0.4s;
+}
+.noteiconpinimage:hover{
+    background-color: rgba(115, 169, 211, 0.08);
+    cursor: pointer;
+}
+.note:hover .noteiconpinimage{
+    visibility: visible;
+}
+.dummy{
+    margin-top:25px;
+    margin-right:20px;
+}
+
+.notetickicon{
+    visibility:hidden;
+    position: absolute;
+    margin-top: -9px;
+    margin-left: -6px;
+    transition: 0.4s;
+}
+.dummy:hover .notetickicon{
+    visibility: visible;
+}
+.listtextbox{
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 16px;
+  }
+.listtextbox1{
+    position: absolute;
+    margin-top: 6px;
+    margin-left: 3px;
+  }
+.listingnoteelement{
+    width: 550px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: none;
+    border-right: none;
+    display:flex;
+}
+.palette{
+    width:100px;
+    display:grid;
+    grid-template-columns: auto auto auto;
+}
+.palettecolor{
+    height:20px;
+    width:20px;
+    border-radius:50%;
+}
+.inputlist{
+    width: 100%;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    border-left: none;
+    border-right: none;
+    outline:none;
+}
