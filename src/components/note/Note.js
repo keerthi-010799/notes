@@ -15,10 +15,10 @@ const Note = (props) => {
   const titleChangeHandler = (event) => {
     event.preventDefault();
     const title = event.target.value;
-    props.titlechanged({ title: title});
+    props.titlechanged(title);
   };
   const changeinput = (e) => {
-    setinput(e.target.value);
+    setinput(e.target.value);   
   };
   const inputHandling = (e) => {
     if (e.key === "Enter") {
@@ -26,18 +26,9 @@ const Note = (props) => {
       setinput("");
     }
   };
-  const clickcheckboxhandler = (index) => {
-    const ticklist = props.list;
-    const ticked = ticklist.splice(index, 1);
-    props.checked(ticked);
-  };
-  const uncheckHandler = (checkindex)=>{
-    const nottick = props.checkedlist.splice(checkindex,1);
-    props.unchecked(nottick,checkindex)
-
-  }
   return (
-    <div className="dummy" style={props.modalsize}>
+    <div className="dummy" style={props.modalsize} onClick={props.togglemodal}
+    >
       <div className="notetickicon">
         <img src={tick} alt=" " />
       </div>
@@ -64,14 +55,14 @@ const Note = (props) => {
             {props.list.map((listt, index) => {
               return (
                 <Listednotes 
-                  togglingmodal={props.togglemodal}
-                  cutting={() => clickcheckboxhandler(index)}
+                  cutting={()=>props.clickcheckboxhandler(index,props.noteIndex)}
                   style={{ marginLeft: "20px" }}
                   list={listt} 
-                  listchanged={props.listchanged}
+                  listchanged={()=>props.listchanged(props.list,index)}
                 />
               );
-            })} 
+            })
+            } 
               {props.checkedlist.length !== 0 ? 
               <div>  
             <hr/>
@@ -79,7 +70,7 @@ const Note = (props) => {
             {props.checkedlist.map((check,checkindex) => {
               return (
                 <div style={{position:"relative"}}>
-                  <img onClick={()=>uncheckHandler(checkindex)}  
+                  <img onClick={()=>props.uncheckHandler(checkindex,props.noteIndex)}  
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj48cGF0aCBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY1aDE0djE0eiIvPgogIDxwYXRoIGQ9Ik0xOCA5bC0xLjQtMS40LTYuNiA2LjYtMi42LTIuNkw2IDEzbDQgNHoiLz4KPC9zdmc+Cg=="
                     alt=""
                     style={{
@@ -106,7 +97,6 @@ const Note = (props) => {
           </div>
         ) : (
           <Individualnote
-            togglingmodal={props.togglemodal}
             note={props.note} 
             notechanged={props.notechanged}
           />

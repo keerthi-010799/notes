@@ -9,7 +9,7 @@ const Individualnote = (props) => {
   };
  return (        
         <TextareaAutoresize
-        onClick={props.togglingmodal}
+        //onClick={props.togglingmodal}
         className="textnotes"
         value={props.note}
         name={"note"}

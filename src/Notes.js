@@ -24,15 +24,15 @@ class Notes extends Component {
       status: false,
       noteIndex: null,
     },
-    notes: [],
+    notes:[],
     currentNote: {
       type: "normal",
       title: "",
       note: "",
       listed: "",
       list: [],
-    },
     checked:[],
+  },
   };
   componentDidMount() {
     document.addEventListener("mousedown", this.ChangeHandler);
@@ -60,6 +60,7 @@ class Notes extends Component {
             title: "",
             note: "",
             list: [],
+            checked:[]
           },
         });
       }
@@ -81,10 +82,10 @@ class Notes extends Component {
     notes[this.state.modal.noteIndex] = {note};
     this.setState({ notes });
   };
-  modaltitlechangeHandler = ({title})=>
+  modaltitlechangeHandler = (title)=>
   {
       const notes = [...this.state.notes];
-      notes[this.state.modal.noteIndex] = { title };
+      notes[this.state.modal.noteIndex].title = title ;
       this.setState({ notes });
   }
   handlelistInput = (e) => {
@@ -101,23 +102,35 @@ class Notes extends Component {
     if (e.key === "Enter") {
       const list = [...this.state.currentNote.list];
       list.push(this.state.currentNote.listed);
-      this.setState({ currentNote: { list, type: "list", listed: "" } });
+      this.setState({ currentNote: { list, type: "list", listed: "",checked:[]} });
     }
   };
-
-  checkedhandler=(check)=>{
-    const checked = [...this.state.checked,check];
-    //c.push(check);
-    this.setState({checked});
+  checkedhandler=(index,noteIndex)=>{
+    const check = [...this.state.notes[noteIndex].list]
+    const notes = [...this.state.notes];
+    const ticked = check.splice(index,1);
+    const checked = {...notes[noteIndex]}; 
+    checked.checked.push(ticked);
+    notes[noteIndex] = checked;
+    this.setState({notes});
   }
-  uncheckedHandler=(uncheck,index)=>{
-    const unchecked = [...this.state.notes[index].list,uncheck];
-    this.setState({notes:{list:unchecked}});
+  uncheckedHandler=(index,noteIndex)=>{
+    const unchecked = [...this.state.notes[noteIndex].checked];
+    const untick = unchecked.splice(index,1);
+    this.setState({checked:unchecked});
+    const notes = [...this.state.notes];
+    const list = {...notes[noteIndex]};
+    list.list = [...this.state.notes[noteIndex].list,untick];
+    notes[noteIndex]=list;
+    this.setState({notes});
   }
-  listmodelhandler=({list})=>{
-    const listnote = [...this.state.notes[this.state.modal.noteIndex].list];
-    listnote[this.state.modal.noteIndex] = { list };
-    this.setState({ list:listnote });
+  listmodelhandler=(list,index)=>{
+    const notes = [...this.state.notes];
+    const note = {...notes[this.state.modal.noteIndex]};
+    let listnote = [...note.list];
+    listnote[index] = list;
+    notes[this.state.modal.noteIndex] = listnote
+    this.setState({ notes });
   }
   render() {
     const { currentNote } = this.state;
@@ -145,11 +158,14 @@ class Notes extends Component {
     });
     const notes = this.state.notes.map((note, noteIndex) => {
       return (
-        <Note 
-        checkedlist = {this.state.checked}
-        checked={this.checkedhandler}
-        unchecked = {this.uncheckedHandler} 
-        showinput={{display:"none"}} togglemodal={() => this.toggleModal(true, noteIndex)} {...note} />
+        <Note //key={noteIndex}
+        checkedlist = {note.checked}
+        //checked={()=>this.checkedhandler(index)}
+        clickcheckboxhandler={this.checkedhandler}
+        uncheckHandler = {this.uncheckedHandler} 
+        showinput={{display:"none"}} togglemodal={() => this.toggleModal(true, noteIndex)} 
+        noteIndex={noteIndex}
+        {...note} />
       );
     });
     return (
@@ -292,12 +308,14 @@ class Notes extends Component {
                         <div style={{ display: "flex" }}>
                           <Note
                             checkedlist={this.state.checked}
-                            checked={this.checkedhandler}
                             showinput={{display:"block"}}
                             modalsize={{width:"100%",margin:"0px"}}
                             titlechanged={this.modaltitlechangeHandler}
                             notechanged={this.modalnoteChangeHandler}
                             listchanged={this.listmodelhandler}
+                            clickcheckboxhandler={this.checkedhandler}
+                            uncheckHandler = {this.uncheckedHandler}
+                            noteIndex={this.state.modal.noteIndex}
                             {...this.state.notes[this.state.modal.noteIndex]}
                           />
                         </div>
