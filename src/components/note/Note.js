@@ -10,7 +10,7 @@ import others from "../../assets/images/icons/others.svg";
 import pin from "../../assets/images/icons/pin.svg";
 import tick from "../../assets/images/icons/tick.svg";
 
-const Note = (props) => {
+const Note = ({togglemodal,...props}) => {
   const [input, setinput] = useState("");
   const titleChangeHandler = (event) => {
     event.preventDefault();
@@ -30,14 +30,14 @@ const Note = (props) => {
     props.notechanged(props.list,index);
   }
   return (
-    <div className="dummy" style={props.modalsize} onClick={props.togglemodal}>
+    <div className="dummy" style={props.modalsize} onClick={togglemodal}>
       <div className="notetickicon">
         <img src={tick} alt=" " />
       </div>
       <div className="d-flex flex-column bd-highlight note">
         <div style={{ display: "flex" }}>
           <input
-            onClick={props.togglemodal}
+            // onClick={props.togglemodal}
             autoComplete="off"
             value={props.title}
             className="noteitemtitle"
@@ -52,7 +52,7 @@ const Note = (props) => {
         </div>
         {props.type === "list" ? (
           <div>
-            {props.list.map((listt, index) => {
+            {props.list.map((listt, index) => { // TODO: rebuild the Listednotes component
               return (
                 <Listednotes
                   cutting={() =>
