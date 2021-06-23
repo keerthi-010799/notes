@@ -82,6 +82,7 @@ class Notes extends Component {
     notes[this.state.modal.noteIndex] = {note};
     this.setState({ notes });
   };
+  
   modaltitlechangeHandler = (title)=>
   {
       const notes = [...this.state.notes];
@@ -295,9 +296,8 @@ class Notes extends Component {
             <div className="d-flex flex-wrap">{notes}</div>
 
             {this.state.modal.status ? (
-              <Modal clicked={() => {
-                console.log("log");
-              }}>
+              // TODO: put this whole thing in note popup component 
+              <Modal clicked={() => this.toggleModal(false, null)}>
                 {this.state.modal.noteIndex !== null && (
                   <div
                     style={{ backgroundColor: "white" }}

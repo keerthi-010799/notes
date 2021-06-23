@@ -26,8 +26,8 @@ const Note = ({togglemodal,...props}) => {
       setinput("");
     }
   };
-  const listchanged=(list,index)=>{
-    props.notechanged(props.list,index);
+  const listchanged=(listText,index)=>{
+    props.listchanged(listText,index);
   }
   return (
     <div className="dummy" style={props.modalsize} onClick={togglemodal}>
@@ -60,7 +60,7 @@ const Note = ({togglemodal,...props}) => {
                   }
                   style={{ marginLeft: "20px" }}
                   list={listt}
-                  listchanged={listchanged}
+                  listchanged={(value)=>listchanged(value,index)}
                 />
               );
             })}
