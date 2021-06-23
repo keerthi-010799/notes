@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Individualnote from "../Individualnote/Individualnote";
-import Listednotes from "../Listednotes/Listednotes";
+//import Listednotes from "../Listednotes/Listednotes";
 import Tooltip from "react-tooltip";
 import person from "../../assets/images/icons/person.svg";
 import palette from "../../assets/images/icons/palette.svg";
@@ -9,35 +9,35 @@ import archive from "../../assets/images/icons/archive.svg";
 import others from "../../assets/images/icons/others.svg";
 import pin from "../../assets/images/icons/pin.svg";
 import tick from "../../assets/images/icons/tick.svg";
+import Noteswithcheckbox from "../Noteswithcheckbox/Noteswithcheckbox";
 
 const Note = ({togglemodal,...props}) => {
-  const [input, setinput] = useState("");
-  const titleChangeHandler = (event) => {
-    event.preventDefault();
-    const title = event.target.value;
-    props.titlechanged(title);
-  };
-  const changeinput = (e) => {
-    setinput(e.target.value);
-  };
-  const inputHandling = (e) => {
-    if (e.key === "Enter") {
-      props.list.push(e.target.value);
-      setinput("");
-    }
-  };
-  const listchanged=(listText,index)=>{
-    props.listchanged(listText,index);
-  }
+  // const [input, setinput] = useState("");
+   const titleChangeHandler = (event) => {
+     event.preventDefault();
+     const title = event.target.value;
+     props.notechanged({title:title,note:props.note});
+   };
+  // const changeinput = (e) => {
+  //   setinput(e.target.value);
+  // };
+  // const inputHandling = (e) => {
+  //   if (e.key === "Enter") {
+  //     props.list.push(e.target.value);
+  //     setinput("");
+  //   }
+  // };
+  // const listchanged=(listText,index)=>{
+  //   props.listchanged(listText,index);
+  // }
   return (
-    <div className="dummy" style={props.modalsize} onClick={togglemodal}>
+    <div className="dummy" style={props.style} onClick={togglemodal}>
       <div className="notetickicon">
         <img src={tick} alt=" " />
       </div>
       <div className="d-flex flex-column bd-highlight note">
         <div style={{ display: "flex" }}>
           <input
-            // onClick={props.togglemodal}
             autoComplete="off"
             value={props.title}
             className="noteitemtitle"
@@ -52,10 +52,15 @@ const Note = ({togglemodal,...props}) => {
         </div>
         {props.type === "list" ? (
           <div>
-            {props.list.map((listt, index) => { // TODO: rebuild the Listednotes component
+            <Noteswithcheckbox 
+            list={props.list} 
+            checkedlist={props.checkedlist}
+            clickcheckboxhandler={props.clickcheckboxhandler}
+            uncheckHandler={()=>props.uncheckHandler(props.checkindex,props.noteIndex)}/>
+            {/* {props.list.map((listt, index) => { // TODO: rebuild the Listednotes component *changed
               return (
                 <Listednotes
-                  cutting={() =>
+                  oncheck={() =>
                     props.clickcheckboxhandler(index, props.noteIndex)
                   }
                   style={{ marginLeft: "20px" }}
@@ -112,6 +117,7 @@ const Note = ({togglemodal,...props}) => {
                 })}
               </div>
             ) : null}
+          </div> */}
           </div>
         ) : (
           <Individualnote note={props.note} notechanged={props.notechanged} />

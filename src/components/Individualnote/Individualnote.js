@@ -5,7 +5,7 @@ const Individualnote = (props) => {
   const noteChangeHandler = (event) => {
     event.preventDefault();
     const note = event.target.value;
-    props.notechanged({ note: note });
+    props.notechanged({title:props.title,note:note});
   };
  return (        
         <TextareaAutoresize

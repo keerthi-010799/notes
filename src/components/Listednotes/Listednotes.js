@@ -5,8 +5,8 @@ class Listednotes extends Component {
   
   listChangeHandler = (event) => {
     event.preventDefault();
-    const list = event.target.value;
-    this.props.listchanged(list); // TODO:list item text 
+    const listItemText = event.target.value;
+    this.props.listchanged(listItemText); // TODO:list item text   *changed
   };
 
   render() {
@@ -19,7 +19,7 @@ class Listednotes extends Component {
             style={{ position: 'absolute', marginTop: '17px', marginLeft: '17px' }}
             height='16'
             width='16'
-            onClick={this.props.cutting} // TODO: change this function name 
+            onClick={this.props.oncheck} // TODO: change this function name  *changed
           />
           <TextareaAutoresize
             style={{ marginLeft: '20px' }}
