@@ -18,7 +18,7 @@ const Note = (props) => {
     props.titlechanged(title);
   };
   const changeinput = (e) => {
-    setinput(e.target.value);   
+    setinput(e.target.value);
   };
   const inputHandling = (e) => {
     if (e.key === "Enter") {
@@ -26,17 +26,17 @@ const Note = (props) => {
       setinput("");
     }
   };
+  const listchanged=(list,index)=>{
+    props.notechanged(props.list,index);
+  }
   return (
-    <div className="dummy" style={props.modalsize} onClick={props.togglemodal}
-    >
+    <div className="dummy" style={props.modalsize} onClick={props.togglemodal}>
       <div className="notetickicon">
         <img src={tick} alt=" " />
       </div>
-      <div
-        className="d-flex flex-column bd-highlight note"
-      >
+      <div className="d-flex flex-column bd-highlight note">
         <div style={{ display: "flex" }}>
-          <input 
+          <input
             onClick={props.togglemodal}
             autoComplete="off"
             value={props.title}
@@ -54,37 +54,16 @@ const Note = (props) => {
           <div>
             {props.list.map((listt, index) => {
               return (
-                <Listednotes 
-                  cutting={()=>props.clickcheckboxhandler(index,props.noteIndex)}
+                <Listednotes
+                  cutting={() =>
+                    props.clickcheckboxhandler(index, props.noteIndex)
+                  }
                   style={{ marginLeft: "20px" }}
-                  list={listt} 
-                  listchanged={()=>props.listchanged(props.list,index)}
+                  list={listt}
+                  listchanged={listchanged}
                 />
               );
-            })
-            } 
-              {props.checkedlist.length !== 0 ? 
-              <div>  
-            <hr/>
-            <div>Completed item</div>
-            {props.checkedlist.map((check,checkindex) => {
-              return (
-                <div style={{position:"relative"}}>
-                  <img onClick={()=>props.uncheckHandler(checkindex,props.noteIndex)}  
-                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj48cGF0aCBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY1aDE0djE0eiIvPgogIDxwYXRoIGQ9Ik0xOCA5bC0xLjQtMS40LTYuNiA2LjYtMi42LTIuNkw2IDEzbDQgNHoiLz4KPC9zdmc+Cg=="
-                    alt=""
-                    style={{
-                      position: "absolute",
-                      marginTop: "17px",
-                      marginLeft: "17px",
-                    }}
-                    style={{position:"absolute",marginLeft:"17px",marginTop:"5px"}}
-                    height="16"
-                    width="16"
-                  />
-                  <input style={{border:"none",outline:"none",paddingLeft:"38px"}} value={check}/>
-                </div>
-             )})}</div>:null}
+            })}
             <input
               style={props.showinput}
               className="inputlist"
@@ -94,12 +73,48 @@ const Note = (props) => {
               autoComplete="off"
               placeholder="+ list item"
             />
+            {props.checkedlist && props.checkedlist.length !== 0 ? (
+              <div>
+                <hr />
+                <div>Completed item</div>
+                {props.checkedlist.map((check, checkindex) => {
+                  return (
+                    <div style={{ position: "relative" }}>
+                      <img
+                        onClick={() =>
+                          props.uncheckHandler(checkindex, props.noteIndex)
+                        }
+                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj48cGF0aCBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY1aDE0djE0eiIvPgogIDxwYXRoIGQ9Ik0xOCA5bC0xLjQtMS40LTYuNiA2LjYtMi42LTIuNkw2IDEzbDQgNHoiLz4KPC9zdmc+Cg=="
+                        alt=""
+                        style={{
+                          position: "absolute",
+                          marginTop: "17px",
+                          marginLeft: "17px",
+                        }}
+                        style={{
+                          position: "absolute",
+                          marginLeft: "17px",
+                          marginTop: "5px",
+                        }}
+                        height="16"
+                        width="16"
+                      />
+                      <input
+                        style={{
+                          border: "none",
+                          outline: "none",
+                          paddingLeft: "38px",
+                        }}
+                        value={check}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
         ) : (
-          <Individualnote
-            note={props.note} 
-            notechanged={props.notechanged}
-          />
+          <Individualnote note={props.note} notechanged={props.notechanged} />
         )}
         <div className="notetitle" style={{ display: "flex" }}>
           <div className="notebellicon">

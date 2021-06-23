@@ -5,7 +5,7 @@ class Listednotes extends Component {
  listChangeHandler = (event) => {
     event.preventDefault();
     const list = event.target.value;
-    this.props.listchanged({list:list});
+    this.props.listchanged(list);
   };
   render(){
   return (
@@ -15,7 +15,6 @@ class Listednotes extends Component {
       alt="" style={{position:"absolute",marginTop:"17px",marginLeft:"17px"}}
       height="16"   width="16"  onClick={this.props.cutting}/>
             <TextareaAutoresize 
-            //onClick={this.props.togglingmodal}
              style={{marginLeft:"20px"}}
              className="textnotes"
              value={this.props.list}
