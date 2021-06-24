@@ -28,7 +28,7 @@ const Note = ({
       </div>
       <div className="d-flex flex-column bd-highlight note">
         <div style={{ display: "flex" }}>
-          <input
+          <input autoFocus
             autoComplete="off"
             value={props.title}
             className="noteitemtitle"

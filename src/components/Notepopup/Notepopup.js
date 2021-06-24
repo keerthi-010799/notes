@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 import Modal from "../Modal/Modal";
 import Note from "../note/Note";
 import { useState } from "react";
+import Focus from "../Focus";
 
 const Notepopup = (props) => {
+ const mainRef = useRef(null);
+ Focus(mainRef)
   const [popupnote, setpopupnote] = useState([]);
 
   useEffect(() => {
-    console.log("mount");
+    
     setpopupnote({
       ...props.popupnote,
     });
@@ -48,11 +51,11 @@ const Notepopup = (props) => {
       {props.status ? (
         // TODO: put this whole thing in note popup component *created
         <Modal
-          clicked={() => props.togglemodal(false, null)}
-          popupchanges={() => props.popupchanges(popupnote)}
+          clicked={() => {props.togglemodal(false, null);
+           props.popupchanges(popupnote);}}
         >
           {props.noteIndex !== null && (
-            <div
+            <div ref={mainRef}
               style={{ backgroundColor: "white" }}
               className="d-flex flex-column bd-highlight mb-3 modalinner"
               onClick={(e) => {
@@ -62,7 +65,7 @@ const Notepopup = (props) => {
               {
                 <div>
                   <div style={{ display: "flex" }}>
-                    <Note
+                    <Note  
                       showinput={true}
                       style={{ width: "100%", margin: "0px" }} // TODO: change prop name to style *changed
                       titlechanged={modaltitlechangeHandler}

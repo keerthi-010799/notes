@@ -5,7 +5,7 @@ import "./Modal.css";
 
 const Modal =(props)=>{
     return ReactDOM.createPortal(
-    <div className="modal" onClick={props.clicked} onBlur={props.popupchanges}>
+    <div className="modal" onClick={props.clicked}>
         {props.children}
     </div>,document.getElementById("root"));
             

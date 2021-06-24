@@ -27,6 +27,8 @@ class Notes extends Component {
   };
   componentDidMount() {
     document.addEventListener("mousedown", this.ChangeHandler);
+    const notes = [...this.state.notes]
+    localStorage.setItem(JSON.parse(notes));
   }
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.ChangeHandler);
@@ -56,6 +58,8 @@ class Notes extends Component {
         });
       }
     }
+    const notes = [...this.state.notes];
+    localStorage.setItem("notes",JSON.stringify(notes));
   };
   handleInput = (e) => {
     this.setState({
@@ -67,6 +71,8 @@ class Notes extends Component {
   };
   toggleModal = (status, noteIndex) => {
     this.setState({ modal: { status, noteIndex } });
+    var addednote = localStorage.getItem("notes");
+    //alert(addednote);
   };
   handlelistInput = (e) => {
     let listnote = [...this.currentNote.list];
@@ -89,8 +95,8 @@ class Notes extends Component {
   };
   popupchanges = (popupnote) => {
     const notes = [...this.state.notes];
-    this.setState({ notes });
     notes[this.state.modal.noteIndex] = popupnote;
+    this.setState({ notes });
   };
   render() {
     const { currentNote } = this.state;
