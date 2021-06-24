@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Individualnote from "../Individualnote/Individualnote";
 //import Listednotes from "../Listednotes/Listednotes";
 import Tooltip from "react-tooltip";
@@ -11,25 +11,25 @@ import pin from "../../assets/images/icons/pin.svg";
 import tick from "../../assets/images/icons/tick.svg";
 import Noteswithcheckbox from "../Noteswithcheckbox/Noteswithcheckbox";
 
-const Note = ({togglemodal,...props}) => {
-  // const [input, setinput] = useState("");
+const Note = ({togglemodal,clickcheckboxhandler,uncheckHandler,modaltitlechangeHandler,...props}) => {
+  const [input, setinput] = useState("");
    const titleChangeHandler = (event) => {
      event.preventDefault();
      const title = event.target.value;
      props.notechanged({title:title,note:props.note,list:props.list});
    };
-  // const changeinput = (e) => {
-  //   setinput(e.target.value);
-  // };
-  // const inputHandling = (e) => {
-  //   if (e.key === "Enter") {
-  //     props.list.push(e.target.value);
-  //     setinput("");
-  //   }
-  // };
-  // const listchanged=(listText,index)=>{
-  //   props.listchanged(listText,index);
-  // }
+  const changeinput = (e) => {
+    setinput(e.target.value);
+  };
+  const inputHandling = (e) => {
+    if (e.key === "Enter") {
+      props.list.push(e.target.value);
+      setinput("");
+    }
+  };
+  const listchanged=(listText,index)=>{
+    props.listchanged(listText,index);
+  }
   return (
     <div className="dummy" style={props.style} onClick={togglemodal}>
       <div className="notetickicon">
@@ -53,73 +53,12 @@ const Note = ({togglemodal,...props}) => {
         {props.type === "list" ? (
           <div>
             <Noteswithcheckbox 
+            titlechanged={modaltitlechangeHandler}
+            clickcheckboxhandler={clickcheckboxhandler}
+            uncheckHandler={uncheckHandler}
             list={props.list} 
             checkedlist={props.checkedlist}
-            clickcheckboxhandler={()=>props.clickcheckboxhandler(props.clickcheckboxhandler,props.uncheckHandler)}
-            //clickcheckboxhandler={props.uncheckHandler}
-            //notechanged={props.notechanged}
             />
-            {/* {props.list.map((listt, index) => { // TODO: rebuild the Listednotes component *changed
-              return (
-                <Listednotes
-                  oncheck={() =>
-                    props.clickcheckboxhandler(index, props.noteIndex)
-                  }
-                  style={{ marginLeft: "20px" }}
-                  list={listt}
-                  listchanged={(value)=>listchanged(value,index)}
-                />
-              );
-            })}
-            <input
-              style={props.showinput}
-              className="inputlist"
-              value={input}
-              onChange={changeinput}
-              onKeyPress={inputHandling}
-              autoComplete="off"
-              placeholder="+ list item"
-            />
-            {props.checkedlist && props.checkedlist.length !== 0 ? (
-              <div>
-                <hr />
-                <div>Completed item</div>
-                {props.checkedlist.map((check, checkindex) => {
-                  return (
-                    <div style={{ position: "relative" }}>
-                      <img
-                        onClick={() =>
-                          props.uncheckHandler(checkindex, props.noteIndex)
-                        }
-                        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj48cGF0aCBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY1aDE0djE0eiIvPgogIDxwYXRoIGQ9Ik0xOCA5bC0xLjQtMS40LTYuNiA2LjYtMi42LTIuNkw2IDEzbDQgNHoiLz4KPC9zdmc+Cg=="
-                        alt=""
-                        style={{
-                          position: "absolute",
-                          marginTop: "17px",
-                          marginLeft: "17px",
-                        }}
-                        style={{
-                          position: "absolute",
-                          marginLeft: "17px",
-                          marginTop: "5px",
-                        }}
-                        height="16"
-                        width="16"
-                      />
-                      <input
-                        style={{
-                          border: "none",
-                          outline: "none",
-                          paddingLeft: "38px",
-                        }}
-                        value={check}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            ) : null}
-          </div> */}
           </div>
         ) : (
           <Individualnote note={props.note} notechanged={props.notechanged} />

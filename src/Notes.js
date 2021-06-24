@@ -312,6 +312,7 @@ class Notes extends Component {
                 {...this.state.modal}
                 togglemodal={this.toggleModal}
                 popupnote={this.state.notes[this.state.modal.noteIndex]}
+                listchanged={this.listmodelhandler}
               />
             )}
 
