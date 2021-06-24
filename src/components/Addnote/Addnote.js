@@ -32,7 +32,7 @@ const Addnote=(props)=>{
                 display: "flex",
                 paddingTop: "2px",
                 paddingBottom: "2px",
-                paddingLeft: "10px",
+                paddingLeft: "3px",
               }}
             >
               {props.type !== "list" ? (

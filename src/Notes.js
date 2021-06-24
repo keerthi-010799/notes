@@ -167,7 +167,7 @@ class Notes extends Component {
           //checkedlist = {note.checked}  // TODO: change this to checked list  *changed
           showinput={false}
           clickcheckboxhandler={this.checkedhandler}
-          uncheckHandler={this.uncheckedHandler}
+          //uncheckHandler={this.uncheckedHandler}
           showinput={{ display: "none" }} // TODO: send boolean
           togglemodal={() => this.toggleModal(true, noteIndex)}
           noteIndex={noteIndex}

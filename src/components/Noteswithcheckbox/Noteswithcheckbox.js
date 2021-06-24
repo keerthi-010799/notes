@@ -15,14 +15,14 @@ const Noteswithcheckbox = (props)=>{
   };
 return( 
     <div>
-    {props.list.map((listitem, index) => {
+    {props.list.map((listitem, listindex) => {
         return (
           <Listednotes
-            oncheck={() =>props.clickcheckboxhandler(index)
+            oncheck={() =>props.clickcheckboxhandler(listindex)
             }
             style={{ marginLeft: "20px" }}
             list={listitem}
-            //listchanged={(value)=>listchanged(value,index)}
+            //notechanged={(value)=>props.notechanged(value,listindex)}
           />
         );
       })}
@@ -42,7 +42,7 @@ return(
               <div style={{ position: "relative" }}>
                 <img
                   onClick={() =>
-                    props.uncheckHandler(checkindex,props.noteIndex)
+                    props.uncheckHandler(checkindex)
                   }
                   src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj48cGF0aCBkPSJNMTkgM0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY1aDE0djE0eiIvPgogIDxwYXRoIGQ9Ik0xOCA5bC0xLjQtMS40LTYuNiA2LjYtMi42LTIuNkw2IDEzbDQgNHoiLz4KPC9zdmc+Cg=="
                   alt=""

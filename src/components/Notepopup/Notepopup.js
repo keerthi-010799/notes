@@ -17,12 +17,16 @@ const Notepopup = (props)=>{
     setpopupnote({title:title,note:note});
   };
 
-  const checkboxhandler=(index)=>{
-      const tickedlistitem = popupnote.list.splice(index,1);
-      checkedlist.push(tickedlistitem)
-      setpopupnote({checkedlist:tickedlistitem});
+  const checkboxhandler=(index,checkindex)=>{
+      const listitem = popupnote.list.splice(index,1);
+      const checkedlist = popupnote.checkedlist.concat(listitem);
+      setpopupnote({...popupnote,checkedlist:checkedlist});
+  // }
+  // const uncheckedHandler = (index)=>{
+     const checkeditem = popupnote.checkedlist.splice(checkindex,1);
+    const listadditem = popupnote.list.concat(checkeditem);
+    setpopupnote({...popupnote,list:listadditem})
   }
-
 //   const modalnoteChangeHandler = (note) => {
 //     setpopupnote({note:note});
 //   }; 
@@ -50,7 +54,7 @@ const Notepopup = (props)=>{
                             notechanged={modalchangeHandler}
                             //listchanged={this.listmodelhandler}
                             clickcheckboxhandler={checkboxhandler} // TODO: use one function 
-                            //uncheckHandler = {this.uncheckedHandler}
+                            //uncheckHandler = {uncheckedHandler}
                             noteIndex={props.noteIndex}
                             {...popupnote}
                           />

@@ -6,7 +6,7 @@ class Listednotes extends Component {
   listChangeHandler = (event) => {
     event.preventDefault();
     const listItemText = event.target.value;
-    this.props.listchanged(listItemText); // TODO:list item text   *changed
+    this.props.notechanged({title:this.props.title,note:this.props.note,list:listItemText}); // TODO:list item text   *changed
   };
 
   render() {

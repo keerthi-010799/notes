@@ -16,7 +16,7 @@ const Note = ({togglemodal,...props}) => {
    const titleChangeHandler = (event) => {
      event.preventDefault();
      const title = event.target.value;
-     props.notechanged({title:title,note:props.note});
+     props.notechanged({title:title,note:props.note,list:props.list});
    };
   // const changeinput = (e) => {
   //   setinput(e.target.value);
@@ -55,8 +55,10 @@ const Note = ({togglemodal,...props}) => {
             <Noteswithcheckbox 
             list={props.list} 
             checkedlist={props.checkedlist}
-            clickcheckboxhandler={props.clickcheckboxhandler}
-            uncheckHandler={()=>props.uncheckHandler(props.checkindex,props.noteIndex)}/>
+            clickcheckboxhandler={()=>props.clickcheckboxhandler(props.clickcheckboxhandler,props.uncheckHandler)}
+            //clickcheckboxhandler={props.uncheckHandler}
+            //notechanged={props.notechanged}
+            />
             {/* {props.list.map((listt, index) => { // TODO: rebuild the Listednotes component *changed
               return (
                 <Listednotes
