@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Individualnote from "../Individualnote/Individualnote";
-//import Listednotes from "../Listednotes/Listednotes";
 import Tooltip from "react-tooltip";
 import person from "../../assets/images/icons/person.svg";
 import palette from "../../assets/images/icons/palette.svg";
@@ -11,25 +10,17 @@ import pin from "../../assets/images/icons/pin.svg";
 import tick from "../../assets/images/icons/tick.svg";
 import Noteswithcheckbox from "../Noteswithcheckbox/Noteswithcheckbox";
 
-const Note = ({togglemodal,clickcheckboxhandler,uncheckHandler,modaltitlechangeHandler,...props}) => {
-  const [input, setinput] = useState("");
-   const titleChangeHandler = (event) => {
-     event.preventDefault();
-     const title = event.target.value;
-     props.notechanged({title:title,note:props.note,list:props.list});
-   };
-  const changeinput = (e) => {
-    setinput(e.target.value);
+const Note = ({
+  togglemodal,
+  clickcheckboxhandler,
+  uncheckHandler,
+  modaltitlechangeHandler,
+  ...props
+}) => {
+  const titleChangeHandler = (event) => {
+    event.preventDefault();
+    props.titlechanged(event.target.value);
   };
-  const inputHandling = (e) => {
-    if (e.key === "Enter") {
-      props.list.push(e.target.value);
-      setinput("");
-    }
-  };
-  const listchanged=(listText,index)=>{
-    props.listchanged(listText,index);
-  }
   return (
     <div className="dummy" style={props.style} onClick={togglemodal}>
       <div className="notetickicon">
@@ -52,12 +43,13 @@ const Note = ({togglemodal,clickcheckboxhandler,uncheckHandler,modaltitlechangeH
         </div>
         {props.type === "list" ? (
           <div>
-            <Noteswithcheckbox 
-            titlechanged={modaltitlechangeHandler}
-            clickcheckboxhandler={clickcheckboxhandler}
-            uncheckHandler={uncheckHandler}
-            list={props.list} 
-            checkedlist={props.checkedlist}
+            <Noteswithcheckbox
+              showinput={props.showinput}
+              clickcheckboxhandler={clickcheckboxhandler}
+              uncheckHandler={uncheckHandler}
+              list={props.list}
+              listchanged={props.listchanged}
+              checkedlist={props.checkedlist}
             />
           </div>
         ) : (

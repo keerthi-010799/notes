@@ -4,17 +4,15 @@ import TextareaAutoresize from "react-autosize-textarea";
 const Individualnote = (props) => {
   const noteChangeHandler = (event) => {
     event.preventDefault();
-    const note = event.target.value;
-    props.notechanged({title:props.title,note:note,list:props.list});
+    props.notechanged(event.target.value);
   };
- return (        
-        <TextareaAutoresize
-        //onClick={props.togglingmodal}
-        className="textnotes"
-        value={props.note}
-        name={"note"}
-        onChange={noteChangeHandler}
-        />  
+  return (
+    <TextareaAutoresize
+      className="textnotes"
+      value={props.note}
+      name={"note"}
+      onChange={noteChangeHandler}
+    />
   );
 };
 
