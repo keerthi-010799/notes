@@ -27,8 +27,15 @@ class Notes extends Component {
   };
   componentDidMount() {
     document.addEventListener("mousedown", this.ChangeHandler);
-    const notes = [...this.state.notes]
-    localStorage.setItem(JSON.parse(notes));
+    let notes = JSON.parse(localStorage.getItem('notes'));
+    if (notes){
+      this.setState({notes});
+    }else{
+      localStorage.setItem("notes",JSON.stringify([]));
+    }
+  }
+  componentDidUpdate(){
+    localStorage.setItem("notes",JSON.stringify(this.state.notes));
   }
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.ChangeHandler);
@@ -56,10 +63,8 @@ class Notes extends Component {
             checkedlist: [],
           },
         });
-      }
     }
-    const notes = [...this.state.notes];
-    localStorage.setItem("notes",JSON.stringify(notes));
+    }
   };
   handleInput = (e) => {
     this.setState({
@@ -71,8 +76,6 @@ class Notes extends Component {
   };
   toggleModal = (status, noteIndex) => {
     this.setState({ modal: { status, noteIndex } });
-    var addednote = localStorage.getItem("notes");
-    //alert(addednote);
   };
   handlelistInput = (e) => {
     let listnote = [...this.currentNote.list];
@@ -99,7 +102,6 @@ class Notes extends Component {
     this.setState({ notes });
   };
   render() {
-    const { currentNote } = this.state;
     const notes = this.state.notes.map((note, noteIndex) => {
       return (
         <Note

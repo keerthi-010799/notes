@@ -63,6 +63,7 @@ const Noteswithcheckbox = (props) => {
                     border: "none",
                     outline: "none",
                     paddingLeft: "38px",
+                    textDecorationLine:"line-through"
                   }}
                   value={check}
                   readOnly

@@ -18,7 +18,7 @@ const Notepopup = (props) => {
 
   const modaltitlechangeHandler = (title) => {
     const popupcopy = { ...popupnote };
-    setpopupnote({ ...popupnote, title: title });
+    setpopupnote({ ...popupcopy, title: title });
   };
 
   const modalchangeHandler = (note) => {
