@@ -7,7 +7,8 @@ const Individualnote = (props) => {
     props.notechanged(event.target.value);
   };
   return (
-    <TextareaAutoresize
+    <TextareaAutoresize 
+      style={props.style}
       className="textnotes"
       value={props.note}
       name={"note"}

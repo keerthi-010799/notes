@@ -4,11 +4,13 @@ import Note from "../note/Note";
 import { useState } from "react";
 import Focus from "../Focus";
 
+
 const Notepopup = (props) => {
  const mainRef = useRef(null);
  Focus(mainRef)
   const [popupnote, setpopupnote] = useState([]);
-
+  const [history,sethistory] = useState([]);
+  const [count,setcount] = useState(0);
   useEffect(() => {
     
     setpopupnote({
@@ -24,6 +26,11 @@ const Notepopup = (props) => {
   const modalchangeHandler = (note) => {
     const popupcopy = { ...popupnote };
     setpopupnote({ ...popupcopy, note: note });
+    //const modalnote = popupnote;
+    //const historycpy = [history];
+    history.push(popupnote);
+    sethistory(history);
+    setcount(count + 1);
   };
 
   const checkboxhandler = (index) => {
@@ -39,17 +46,39 @@ const Notepopup = (props) => {
     const listadditem = popupnoteCpy.list.concat(checkeditem);
     setpopupnote({ ...popupnoteCpy, list: listadditem });
   };
-
   const listchanged = (list, index) => {
     const popupnotecopy = { ...popupnote };
     popupnotecopy.list[index] = list;
     setpopupnote({ ...popupnotecopy });
   };
-
+  const uploadingimage = (imagelink) => {
+    const popupnotecopy = { ...popupnote };
+    popupnotecopy.images = imagelink;
+    setpopupnote({ ...popupnotecopy });
+  };
+  const bgcolorchange = (color)=>{
+    const popupnotecopy = { ...popupnote };
+    popupnotecopy.color = color;
+    setpopupnote({ ...popupnotecopy });
+  }
+  const changedrag=(changednote)=>{
+    const notecopy = {...popupnote};
+    notecopy.list = changednote;
+    setpopupnote({...notecopy});
+  }
+  const undofunction =()=>{
+  const index = count - 1;  
+  setpopupnote(history[index]);
+  setcount(count-1);
+  }
+  const redofunction =()=>{
+    const index = count + 1;  
+    setpopupnote(history[index]);
+    setcount(count + 1);
+    }
   return (
     <div>
       {props.status ? (
-        // TODO: put this whole thing in note popup component *created
         <Modal
           clicked={() => {props.togglemodal(false, null);
            props.popupchanges(popupnote);}}
@@ -67,15 +96,23 @@ const Notepopup = (props) => {
                   <div style={{ display: "flex" }}>
                     <Note  
                       showinput={true}
-                      style={{ width: "100%", margin: "0px" }} // TODO: change prop name to style *changed
+                      showdrag={true}
+                      imgstyle={{width:"100%"}}
+                      style={{ width: "100%",margin: "0px" }}
                       titlechanged={modaltitlechangeHandler}
-                      notechanged={modalchangeHandler} //individual note function
-                      listchanged={listchanged} // list note function
-                      clickcheckboxhandler={checkboxhandler} // TODO: use one function
+                      notechanged={modalchangeHandler} 
+                      listchanged={listchanged} 
+                      clickcheckboxhandler={checkboxhandler} 
                       uncheckHandler={uncheckHandler}
                       popupchanges={props.popupchanges}
+                      imagelink={uploadingimage}
+                      colorfrompalette={bgcolorchange}
                       noteIndex={props.noteIndex}
+                      deletenote={props.deletenote}
+                      undooption={undofunction}
+                      redooption={redofunction}
                       {...popupnote}
+                      changedrag={changedrag}
                     />
                   </div>
                 </div>

@@ -22,14 +22,16 @@
     cursor: pointer;
 }
 .keepicon{ 
-    margin-left: px;   
+    margin-left: 5px;
+    margin-top: 4px;   
 }
 .name{
   font-Size: 22px;
   padding-Bottom: 6px;
-  padding-Left: 10px;
+  padding-Left: 15px;
   color: "#5f6368";
   margin-Right: 50px;
+  margin-top: 5px;
 }
 .search{
     position: relative;
@@ -73,7 +75,8 @@
     background-color: #f1f3f4;
 }
 .closeicon{
-    visibility: hidden;
+    /* visibility: hidden; */
+    margin-left: 90%;
     position: absolute;
     height: 40px;
     width: 40px;
@@ -82,9 +85,9 @@
     padding-left: 6px;
     border-radius: 50%;
 }
-.search:focus-within .closeicon{
+/* .search:focus-within .closeicon{
     visibility: visible;
-}
+} */
 .closeicon:hover{
     background-color: rgba(60,64,67,0.08);
     cursor: pointer;

@@ -15,7 +15,6 @@
     align-items: center;
     height: 48px;
     width: 48px;
-    
     padding-top: 10px;
     padding-left: 13px;
     border-radius: 50%;
@@ -53,9 +52,9 @@
     border-radius: 50%;
     margin-left: 7px;
 }
-.sideDrawerItem1:hover{
+/* .sideDrawerItem1:hover{
     background-color: #feefc3;
-}
+} */
 .ssideDrawerr1{
     display: flex;
     cursor: pointer;
