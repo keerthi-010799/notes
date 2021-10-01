@@ -62,7 +62,7 @@ const Note = ({
       <img src={tick} alt=" " />
     </div>
       <img className="imgupload" style={props.imgstyle} src={props.images} alt="" />
-      <div className="d-flex flex-column bd-highlight note" style={{backgroundColor:`${props.color}`}}>
+      <div className="d-flex flex-column bd-highlight note" style={{backgroundColor:`${props.color}`,borderTop:`${props.border}`}}>
         <div onClick={togglemodal}>
           <div style={{ display: "flex" }}>
             <input

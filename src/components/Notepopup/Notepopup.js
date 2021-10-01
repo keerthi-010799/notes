@@ -99,6 +99,7 @@ const Notepopup = (props) => {
                       showdrag={true}
                       imgstyle={{width:"100%"}}
                       style={{ width: "100%",margin: "0px" }}
+                      border = "none"
                       titlechanged={modaltitlechangeHandler}
                       notechanged={modalchangeHandler} 
                       listchanged={listchanged} 

@@ -65,7 +65,10 @@ class Notes extends Component {
         });
         console.log(this.state.deleted);
         this.setState({ deleted: Bindata });
-      });
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   }
 
    componentDidUpdate() {
@@ -82,7 +85,17 @@ class Notes extends Component {
     .catch((er) => {
       console.log(er);
     });
-    console.log(this.context.searchWord);
+    
+    getBindata().then(res=>{console.log(res.data);
+      let Bindata = Object.keys(res.data).map((id) => {
+        return { id, ...res.data[id] };
+      });
+      console.log(this.state.deleted);
+      this.setState({ deleted: Bindata });
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
    }
   componentWillUnmount() {
@@ -223,7 +236,7 @@ class Notes extends Component {
      notes = this.state.notes.filter((note)=>{
       if(this.context.searchWord ===""||this.context.searchWord === null){
         return note
-      }else if(note.title.includes(this.context.searchWord)||note.note.includes(this.context.searchWord)){
+      }else if(note.title.toLowerCase().includes(this.context.searchWord.toLowerCase())||note.note.toLowerCase().includes(this.context.searchWord.toLowerCase())){
         return note
     }
     }).map((note, noteIndex) => {
