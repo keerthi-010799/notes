@@ -17,6 +17,7 @@ const Header = () => {
   const [searchtext,setText] = useState();
   const [show,setShow] = useState(false);
   const [view,setview] = useState(true);
+  const [mainmenu,setmenu] = useState(false);
   const context = useContext(Context);
   const changeHandler=(event)=>{
     const word = event.target.value;
@@ -37,9 +38,13 @@ const Header = () => {
      context.searchWord = null;
      setShow(false);
    }
+   const menuHandler=()=>{
+     setmenu(!mainmenu);
+     context.mainmenu = mainmenu;
+   }
   return (
     <div class="d-flex justify-content-between  align-items-center noteheader">
-            <div class="d-flex p-2"> <div className="menu">
+            <div class="d-flex p-2"> <div className="menu" onClick={menuHandler}>
           <img src={menu} alt="" data-tip data-for="menu"/>
           <Tooltip id="menu" place="bottom">Main menu</Tooltip>
         </div>

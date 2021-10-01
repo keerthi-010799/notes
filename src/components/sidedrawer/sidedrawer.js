@@ -23,14 +23,14 @@ const Sidedrawer = () => {
     setNote("#feefc3");
   }
   return (
-      <div className="sideDrawer">
+      <div className="sideDrawer" style={context.mainmenu ? {width:"200px"} : null} >
         <div className={context.deletednotes ? "ssideDrawerr":"ssideDrawerr1"}>
           <div
             className={context.deletednotes ? "sideDrawerItem":"sideDrawerItem1"}
           style={{backgroundColor:noteColor}}>
             <img src={notes} alt="" />
           </div>
-          <div className="sideText1" onClick={notesHandler}>Notes</div>
+          <div className="sideText1" style={context.mainmenu ? {display:'flex'}:null} onClick={notesHandler}>Notes</div>
         </div>
         {/* <div className="ssideDrawerr">
           <div className="sideDrawerItem">
@@ -73,7 +73,7 @@ const Sidedrawer = () => {
           <div className={!context.deletednotes ? "sideDrawerItem" : "sideDrawerItem1"} style={{backgroundColor:binColor}}>
             <img src={trash} alt="" />
           </div>
-          <div className="sideText"  onClick={binHandler}>Bin</div>
+          <div className="sideText" style={context.mainmenu ? {display:'flex'}:null} onClick={binHandler}>Bin</div>
         </div>
       </div>
     );
