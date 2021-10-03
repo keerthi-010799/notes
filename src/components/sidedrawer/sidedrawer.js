@@ -10,17 +10,17 @@ import Context from '../../context/context';
 
 const Sidedrawer = () => {
   const context = useContext(Context)
-  const [noteColor,setNote] = useState("#feefc3");
+  const [noteColor,setNote] = useState("#00bcd4");
   const [binColor,setBin] = useState();
   const binHandler = ()=>{
-    setBin("#feefc3");
+    setBin("#00bcd4");
     setNote(" ");
     context.deletednotes = true;
   }  
   const notesHandler =()=>{
     context.deletednotes = false;
     setBin(" ");
-    setNote("#feefc3");
+    setNote("#00bcd4");
   }
   return (
       <div className="sideDrawer" style={context.mainmenu ? {width:"200px"} : null} >

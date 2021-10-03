@@ -1,4 +1,6 @@
 .sideDrawer{
+    background-color: #263544;
+    color:white;
     height: 700px;
     width:50px;
     font-family: 'Open Sans',sans-serif;
@@ -6,7 +8,6 @@
     height: 800px;
     width: 200px;
     padding-top: 5px;
-    margin-left: 10px;
     width: 100px;
     transition-property: width;
     transition-duration: 0.5s;
@@ -53,7 +54,7 @@
     margin-left: 7px;
 }
 /* .sideDrawerItem1:hover{
-    background-color: #feefc3;
+    background-color: #00bcd4;
 } */
 .ssideDrawerr1{
     display: flex;
@@ -64,7 +65,7 @@
     box-shadow: 2px 2px light;
 }
 .ssideDrawerr1:hover{
-    background-color: #feefc3;
+    background-color: #00bcd4;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
 }

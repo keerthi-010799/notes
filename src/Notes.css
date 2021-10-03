@@ -4,12 +4,12 @@
     display: flex;
 }
 .notecontainer{
+    background-color: #d8d8d8;
     width: 100%;
     display:block;
     box-sizing: border-box;
     padding-top: 10px;
     padding-left: 10px;
-    margin-left: 100px;
 }
 .container{
     display: flex;
@@ -19,6 +19,7 @@
     column-gap: 1rem;
 }
 .addnote{
+    background-color: white;
    width: 560px; 
    padding-left: 10px;
    padding-right: 8px;
@@ -166,6 +167,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     font-size: 16px;
+    padding-left: 10px;
     color: black;
 }
 .addnote:hover .notetitle{
